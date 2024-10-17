@@ -52,13 +52,23 @@
 //    int k = random.Next(101);
 //}
 
+Console.WriteLine(Factorial(5));
+Console.WriteLine(FactorialIterative(5));
 
-int[] ints = [3, 8, 1];
+int[] a1 = [1, 3, 8, 9];
+int[] a2 = [1, 2, 4, 8, 10];
 
-PrintArray(ints);
+// [1, 1, 2, 3, 4, 8, 8, 9, 10]
+
+
+PrintArray(a1);
 Console.WriteLine("----");
-SelectionSort(ints);
-PrintArray(ints);
+PrintArray(a2);
+Console.WriteLine("----");
+PrintArray(MergeSortedArrays(a1, a2));
+//Console.WriteLine("----");
+//SelectionSort(a1);
+//PrintArray(a1);
 
 
 
