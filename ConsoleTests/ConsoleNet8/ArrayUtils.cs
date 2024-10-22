@@ -27,7 +27,7 @@ internal static class ArrayUtils
     }
 
     public static void SelectionSort(int[] array)
-    {
+    {        
         for (int i = 0; i < array.Length - 1; i++)
         {
             int indexOfMin = FindIndexOfMin(array, i, array.Length - 1);
@@ -139,5 +139,11 @@ internal static class ArrayUtils
     // Fib(n) = Fib(n - 1) + Fib(n - 2)
 
     // 0 1 1 2 3 5 8 13 21 34 
+
+    public static void StrangeType()
+    {
+        
+        var typeOfVoid = typeof(void);
+    }
 
 }
