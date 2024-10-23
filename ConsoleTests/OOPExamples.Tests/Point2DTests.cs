@@ -86,7 +86,7 @@ public class Point2DTests
 
 
     [Fact]
-    public void Test_tbd()
+    public void Test_memory_pressure_with_DistanceFromOrigin_version_1()
     {
         Point2D[] points = CreateRandomPoints(10_000);
 
