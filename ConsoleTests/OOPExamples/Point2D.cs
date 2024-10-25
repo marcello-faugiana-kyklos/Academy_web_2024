@@ -1,24 +1,67 @@
-﻿namespace OOPExamples;
+﻿
+namespace OOPExamples;
+
+
 
 public class Point2D
 {
-    //private double _x;
-    //private double _y;
-    public double X { get; set; }
-    public double Y { get; set; }
-
-    private void DoSomethig()
+    private class Point2DImmutable : Point2D
     {
-        // fa qualcosa
+        public Point2DImmutable() : base()
+        {
+        }
+
+        public override double X
+        {
+            get => base.X;
+            set
+            {
+            }
+        }
+
+        public override double Y
+        {
+            get => base.Y;
+            set { }
+        }
+
+        public override string ToString() =>
+            "I'm Zero";
+
+        public override bool Equals(object? obj)
+        {
+            return base.Equals(obj);
+        }
+        public override bool Equals(Point2D? other)
+        {
+            return base.Equals(other);
+        }
     }
 
-    // KISS
-    // DRY -> Don't Repeat Yourself
+    public virtual double X { get; set; }
+    public virtual double Y { get; set; }
+
+    private static Point2D _zero;
+
+    internal static Type TypeForZero =>
+        typeof(Point2DImmutable);
+
+    // private static Point2D _oneOne;
+
+    public static Point2D Zero =>
+        _zero;
+
+    static Point2D()
+    {
+        //   _oneOne = new(1, 1);
+        _zero = new Point2DImmutable();
+    }
+
+
 
     public Point2D(double x, double y)
     {
         Initialize(x, y);
-        DoSomethig();
     }
 
     public Point2D() : this(0d, 0d)
@@ -36,7 +79,7 @@ public class Point2D
     /// </summary>
     /// <returns>The distance value</returns>
     public double DistanceFromOrigin() =>
-        DistanceFrom(new Point2D());
+        DistanceFrom(_zero);
 
     public double DistanceFrom(Point2D other) =>
         Math
@@ -49,6 +92,13 @@ public class Point2D
 
     public override string ToString() =>
         $"({X:0.00}, {Y:0.00})";
+
+
+
+    //public void Joke()
+    //{
+    //    _zero.X = -1;
+    //}
 
 
     //public double X
@@ -96,17 +146,28 @@ public class Point2D
 
     //public void SetY(double y) =>
     //    _y = y;
-}
 
+    public override int GetHashCode() => 
+        HashCode.Combine(X, Y);
 
-public class Cippa
-{
-    private Point2D _point = new Point2D();
+    public override bool Equals(object? obj) =>
+        Equals(obj as Point2D);
 
-    public void TestPoint()
+    public virtual bool Equals(Point2D? other)
     {
-        var x = _point.X;
-        _point.Y = 10d;
-        _point.X = -5;
+        if (other is null)
+        {
+            return false;
+        }
+
+        if (ReferenceEquals(this, other))
+        {
+            return true;
+        }
+
+        return 
+            other.X == X 
+            && other.Y == Y;
     }
 }
+
